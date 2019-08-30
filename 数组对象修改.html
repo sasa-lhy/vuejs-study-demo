@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<div>>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='vue.js'></script>
+</head>
+<body>
+    <div id='app'>
+        <template>
+            <!-- input没有加key值或者添加相同的key值，点击切换的时候会直接复用已有的input元素，如果你在input元素中写了东西，切换的时候里面也会有 -->
+            <button @click='show=!show'>点击</button>
+            <div v-if='show'>姓名:<input type='text' key='name'/></div>
+            <div v-else>工号:<input type='text' key='jobId'/></div>
+        </template>
+        
+        <ul>
+            <li v-for = 'item in arr'>{{item}}</li>
+        </ul>
+        <h4 v-for='item in obj'>{{ item }}</h4>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                show:false,
+
+                arr:['a','b','c'],
+                obj:{
+                    name:'sasa',
+                    age:'18',
+                    looks:'cute',
+                }
+            }
+        })
+        // vm.arr[4]='e' 通过这种方法来增加数组元素，不会刷新页面，需要用push，但是可以对已有的数组元素进行修改
+        // vm.arr[2]='f';
+        // vm.arr.push('d');
+        // 可以通过这种方法了来添加已有的obj的属性值,会刷新视图，但是不会生成set和get函数，使用vm.$set()可以实现
+        vm.obj.salary = 10000;
+        vm.$set(vm.obj,'job','web');
+    </script>
+</body>
+</html>

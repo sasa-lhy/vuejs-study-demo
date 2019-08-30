@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='vue.js'></script>
+    <style>
+        .box{
+            width:200px;
+            height:300px;
+        }
+        .red{
+            background-color:red;
+        }
+        .blue{
+            background-color:blue;
+        }
+        .pink{
+            background-color:pink;
+        }
+    </style>
+</head>
+<body>
+    <div id='app'>
+        <!-- <button @click='handelClick()'>{{text}}</button>
+        <div class='box red' v-if='show==0'></div> -->
+        <!-- <hr/> v-if 和v-else中间不能加其它东西除了v-else-if否则会报错 -->
+        <!-- <div class='box pink' v-else-if = 'show==1'></div>
+        <div class='box blue' v-else></div> -->
+        <template v-if='show'>
+            <div class='box blue'></div>
+            <div class='box pink'></div>
+        </template>
+        <div v-show='show'>
+                <div class='box blue'></div>
+                <div class='box pink'></div>
+        </div>
+        <!-- 使用template不会添加一个div节点,减少dom操作，可以提高性能，推荐使用template-->
+    </div>
+    <script>
+        // 控制元素的显示和隐藏 v-if，操作dom的移除和添加
+        // v-show控制dom的样式显示与隐藏（display）
+        // v-if可以写在template上而v-show不可以
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                show:false,
+                // show:0,
+                text:'隐藏'
+            },
+            methods:{
+                handelClick(){
+                    if(this.show==0){
+                        this.show =1;
+                        this.text = '隐藏';
+                    }else if(this.show==1){
+                        this.show =2;
+                        this.text = '显示'
+                    }else{
+                        this.show =0;
+                        this.text = '显示'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='vue.js'></script>
+</head>
+<body>
+    <div id='app'>
+        <input v-model='value'>{{value}}<br>
+        <textarea v-model = 'content'></textarea>{{content}}<br>
+        <input type='checkbox' v-model='checked'>{{checked}}
+        <label for='one'>one</label>
+        <input type='checkbox' v-model='checkedlist' value='one' id='one' name='num'>
+        <label for='two'>two</label>
+        <input type='checkbox' v-model='checkedlist' value='two' id='two'  name='num'>
+        <label for='three'>three</label>
+        <input type='checkbox' v-model='checkedlist' value='three' id='three'  name='num'>
+        {{checkedlist}}<br>
+        <label for='female'>女</label>
+        <input type='radio' v-model='radioValue' value='female' id='female' name='sex'>
+        <label for='male'>男</label>
+        <input type='radio' v-model='radioValue' value='male' id='male' name='sex'>
+        {{radioValue}}<br>
+        <select name='' id='' v-model='selectValue'>
+            <option value='' disabled>请选择</option>
+            <option value='a'>a</option>
+            <option value='b'>b</option>
+            <option value='c'>c</option>
+        </select>{{selectValue}}
+        <select name='' id='' v-model='selectArr' multiple>
+                <option value='' disabled>请选择</option>
+                <option value='a'>a</option>
+                <option value='b'>b</option>
+                <option value='c'>c</option>
+            </select>{{selectArr}}
+    </div>
+    <script>
+        // v-model 实现数据的双向绑定 :value+@input 的语法糖
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                value:'sasa',
+                content:'dskjkdmvk',
+                checked:false,
+                checkedlist:[],
+                radioValue:'',
+                selectValue:'',
+                selectArr:[],
+            }
+        })
+    </script>
+</body>
+</html>

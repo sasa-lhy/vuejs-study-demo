@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <hello-world></hello-world>
+        <hello></hello>
+    </div>
+    <div id='app2'>
+        <hello-world></hello-world>
+        <!-- <hello></hello>  局部组件，在此处使用报错-->
+    </div>
+    <div>
+        <!-- 全局组件和局部组件在此处使用没有效果，因为不是在vue实例中，这些标签都不会被正确解析 -->
+        <hello-world></hello-world>
+    </div>
+    <script>
+        // 全局组件
+        // 在html中，标签名不可以是大写的字母，因此给组件命名时，使用小驼峰或者大驼峰时，在html中都必须使用短线分隔开。
+        // 在组件中data必须为一个方法而不是一个对象，因为一个组件有许多个的复制体。为了互相不影响，使用函数来返回需要的数值
+        Vue.component('helloWorld', {
+            template: `
+            <div>{{msg}}</div>
+            `,
+            data() {
+                return {
+                    msg: 'helloworld'
+                }
+            },
+        });
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+            },
+            // 局部组件，当局部组件和全局组件名字一样时，优先使用局部组件，再vue实例中能使用的，在组件中都可以使用
+            // 与全局组件的区别，主要是使用的范围不一样
+            components: {
+                'hello': {
+                    template: `
+                    <h4>{{msg}}</h4>
+                    `,
+                    data() {
+                        return {
+                            msg: 'hello'
+                        }
+                    }
+                }
+            }
+        });
+        const vm2 = new Vue({
+            el:'#app2',
+        })
+    </script>
+</body>
+
+</html>

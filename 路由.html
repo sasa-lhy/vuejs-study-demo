@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='vue.js'></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <router-link to="/foo" tag='li'>test</router-link>
+        <!-- 路由出口，匹配到的组件会渲染在这里 -->
+        <router-view></router-view>
+    </div>
+    <script>
+        // 1.定义(路由)组件可以从其它地方import进来
+        const Foo = { template: '<div>foo</div>' }
+
+        //2.d定义路由
+        // 每个路由应该映射一个组件，其中‘component’可以是
+        // 通过Vue.extend()创建的组件构造器
+        // 或者只是一个组件配置对象
+        const routes = [
+            { path: '/foo', component: Foo },
+        ]
+
+        // 3.创建router实例，配置routers
+        const router = new VueRouter({
+            routes //相当于routers:routers
+        })
+
+        //4.创建和挂载根实例
+        // 记得要通过router配置参数注入路由从而让整个应用都有路由功能
+        const app = new Vue({
+            router
+        }).$mount('#app')
+    </script>
+</body>
+
+</html>

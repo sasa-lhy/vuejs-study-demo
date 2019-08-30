@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='vue.js'></script>
+</head>
+<body>
+    <div id='app'>
+        <!-- <my-content :title='info.title' :content='info.content'></my-content> -->
+        <!-- v-bind 会把整个对象打包传给 -->
+        <my-content v-bind='info' @add='handelAdd'>
+        </my-content>
+        父组件内的number：{{info.number}}
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                info:{
+                    title:'这是一个标题',
+                    content:14,
+                    number:0,
+                    obj:{
+                        x:1,
+                        y:2
+                    }
+                }
+            },
+            methods:{
+                handelAdd(num){
+                    this.info.number ++;
+                }
+            },
+            components:{
+                myContent:{
+                    // props接收父组件通过属性绑定传过来的值
+                    // props:['title','content'],
+                    // 属性校验
+                    props:{
+                        title:{
+                            type:String, // 值的类型
+                            default: 'sasa', // 默认值
+                            required: true, // 必需要传值
+                        },
+                        content:{
+                            type:Number,
+                            // 通过函数校验，第一个参数是传过来的值本身
+                            validator(val){
+                                return val>0
+                            }
+                        },
+                        number:{
+                            type:Number,
+                        },
+                        obj:{
+                            type:Object
+                        }
+                    },
+                    data(){
+                        return{
+                            // ownNumber:this.number,
+                        }
+                    },
+                    template:`
+                    <div>
+                        <h4>{{ title }}</h4>
+                        <p>{{ content }}</p>
+                        <div>{{ number }}</div>
+                        <button @click='handelClick()'>点击</button>
+                    </div>
+                   `,
+                   methods:{
+                       handelClick(){
+
+                            this.$emit('add',this.number)
+                       }
+                   }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

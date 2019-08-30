@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='vue.js'></script>
+</head>
+<body>
+    <div id='app'>
+        {{desc2}}
+    </div>
+    <script>
+        // 查找顺序 data > methods > computed
+        // 侦听器 watch
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                name:'sasa',
+                age:'18',
+                desc:'sasa 18',
+            },
+            methods:{
+                desc1(){
+                    // 不建议用函数来实现，因为每次调用都会执行一次函数，哪怕前后根本没有变化
+                    console.log('函数执行了');
+                    return 'name:'+this.name+'   '+'age:'+this.age;
+                }
+            },
+            // 对应的data中的值改变会触发相应的函数
+            // watch:{
+            //     name(){
+            //         this.desc = 'name:'+this.name+'   '+'age:'+this.age;
+            //     },
+            //     age(){
+            //         this.desc = 'name:'+this.name+'   '+'age:'+this.age;
+            //     }
+            // },
+            computed:{
+                // 当构成它的值改变时，这个函数会再次执行，注意区分methods
+                desc2(){
+                    console.log('计算属性执行了');
+                    return 'name:'+this.name+'   '+'age:'+this.age;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

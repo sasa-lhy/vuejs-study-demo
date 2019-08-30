@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src = 'vue.js'></script>
+    <style>
+        .red{
+            background-color: red;
+        }
+        .blue{
+            background-color: blue;
+        }
+        .yellow{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id ='app'>
+        <button v-on:click ='handelClick($event,2)'>点击</button>
+        <h4 :class='h4Class[h4Index]'>这是一个练习</h4>
+    </div>
+    <script>
+        // v-on:事件名可以简写成  @事件名
+        // tips: 不可以将方法写在data里面，写在data里面时，this拿到的是window对象而不是vm
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                h4Class:['red','blue','yellow'],
+                h4Index:0,
+                h4Mount:0,
+            },
+            methods:{
+                // 事件对象可以用$event传递进去
+                handelClick (e,num) {
+                    // this==vm
+                    console.log('event',e);
+                    console.log('num',num);
+                    this.h4Index = ++this.h4Mount%3;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

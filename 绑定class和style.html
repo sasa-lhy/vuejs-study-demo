@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='vue.js'></script>
+    <style>
+        .red{
+            background-color: red;
+        }
+        .width{
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+    <div id= 'app'>
+        <img :src = 'imgUrl' :alt='name' :style="[{width:imgWidth},imgStyle]"/>
+        <h4 :class='[h4flag?h4class:"", {width:h4flag}]'>{{ name }}</h4>
+    </div>
+    <script>
+        // vue指令
+        // v-bind指令绑定属性,传递参数在后面加冒号 v-bind:参数，这个指令可以简写成冒号：
+        // html元素的属性，可以放置在开始标签里的属性，都可以通过v-bind指令进行属性绑定
+        
+        // 特殊：class 和style属性
+            // 绑定多个class时可以使用数组，对象,这两者可以混用,数组可以给元素添加多个class [定义好的代表类名的变量1, 定义好的代表类名的变量2...]，而对象可以控制哪个class生效{类名: 定义好的布尔值类型的变量}
+            // 绑定style 可以写成对象的形式 <img :style="{width:imgWidth,border:'1px solid red'}"/>
+            //           可以写成数组的形式 <img :style="[{width:imgWidth},imgStyle]"/>
+            // tip1:  需要注意的是:class和:style可以和style和class同时存在，且先设置原生的style和class，然后再决定加上绑定的class和style的值
+            // 所以:style的值可能覆盖tyle值
+            // tip2: 绑定值可以是三元表达式，可以使用&&
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                name:'敖丙',
+                imgUrl:'https://img.4hw.com.cn/20190721/fa58ca3f128354708d342b669955c3d8.jpg!logo',
+                h4class:'red',
+                h4width:'width',
+                h4flag:true,
+                imgWidth: '200px',
+                imgStyle:{
+                    border:'1px solid red'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

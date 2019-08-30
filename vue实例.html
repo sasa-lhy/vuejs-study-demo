@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue实例</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <!-- 基础值类型 -->
+        <!-- {{ 'a' }}
+        {{ 10 }}
+        {{ [1,2,3] }}
+        {{ {a:1,b:2} }} -->
+        <!-- undefined和null默认是空不在页面上显示 -->
+        <!-- {{ undefined }}
+        {{ null }} -->
+
+        <!-- 表达式 -->
+        <!-- {{ 2*8 }}
+        {{ 2-1 }}
+        {{ 10/2 }}
+        {{ 10>1 }} -->
+
+        <!-- 已经定义好的变量 -->
+        {{ a }}
+    </div>
+    <script>
+        console.log();
+        // el:选择一个element元素，让这个元素可以使用vue的语法
+        // Vue是一个构造函数,new Vue()返回一个对象
+        // '$'开头，可以取vm这个对象的属性值，但是data里面的数据也会放在vm对象中
+        // 比如说 vm.a可以拿到data里面a的值，而要拿data这个对象，需要使用vm.$data
+        // 插值表达式{{}}，只可以在里面写js基础值类型，表达式,在vue中定义好的变量
+        // 数据驱动视图
+        const vm = new Vue({
+            // el: '#app',
+            data: {
+                a: 100,
+            }
+        });
+        vm.a = 20;
+        vm.$mount('#app');//也可以实现挂载，和el:'#app'效果是一样的
+        // 在dom更新之后立即去执行的，vm.$nextTick
+        vm.$nextTick(()=>console.log(vm.$el.innerHTML));// 视图的更新是异步的，这拿到的数据是更改之前的
+        
+    </script>
+</body>
+
+</html>

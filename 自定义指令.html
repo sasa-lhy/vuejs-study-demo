@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTFq-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='vue.js'></script>
+</head>
+
+<body>
+    <div id='app'>
+        <input type="text" v-focus>
+        <input type="text" v-focus= 'change'>
+    </div>
+    <script>
+        // 注册全局自定义指令
+        Vue.directive('focus', {
+            // 当绑定元素插入到dom中执行
+            inserted: function (el) {
+                el.focus();
+            }
+        });
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                change:0,
+            },
+            // 局部自定义指令，优先使用
+            directives: {
+                focus: {
+                    inserted: function (el,binding,vnode) {
+                        console.log('inserted', binding)
+                    },
+                    bind: function (el,binding,vnode) {
+                        console.log('bind',vnode)
+                    },
+                    update: function(el,binding,vnode){
+                        console.log('update',vnode);
+                    },
+                    componentUpdated: function(el,binding,vnode){
+                        console.log('componentUpdated',el);
+                    },
+                    unbind: function(el,binding,vnode){
+                        console.log('unbind',vnode);
+                    },
+                }
+            }
+        })
+        // 钩子函数：bind inserted update componentUpdated unbind
+        // 钩子函数参数： el:指令所绑定的元素
+    </script>
+</body>
+
+</html>

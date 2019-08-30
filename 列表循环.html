@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='vue.js'></script>
+</head>
+<body>
+    <div id='app'>
+        <!-- <ul>
+            <li v-for='(item, index) in arr'>{{item}}------{{index}}</li>
+        </ul> -->
+        <!-- <h4 v-for='(value,key,index) in obj'>{{value}}----{{key}}----{{index}}</h4>
+        <p v-for='item in 10'>{{item}}</p>
+        <p v-for='item in "asddff"'>{{item}}</p> -->
+        <button @click='handelClick()'>点击</button>
+        <!-- key值是唯一的，只能为数字和字符串，加key值可以提升性能,通过key值去比对，相同的话会就地复用而不去更改这个元素，不建议用索引当作key值 -->
+        <ul>
+            <li v-for='item in fruit' :key='item'>{{item}}</li>
+        </ul>
+    </div>
+    <script>
+        // v-for可以循环数组，对象，字符串，数字等
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                obj:{
+                    name:'sasa',
+                    age:18,
+                    looks:'cute'
+                },
+                arr:['html','css','js'],
+                
+                // 原生js： Object.defineProperty(修改的对象，修改的属性名，{可读，可写等选项})，做不到检测属性的删除和添加
+                
+                // 修改数组：
+                // 不能通过索引的方法去改变页面，不会刷新页面-----fruit[4] = 'vue'
+                // 不能通过更改长度的方式去更改数组，这样不会渲染----fruit.length = 2;
+                // 如何改变数组呢？用数组变异方法：
+                    // pop shift unshift splice sort reverse push这些数组的方法都可以更新页面
+               
+                // 修改对象
+                // 向对象内删除或者添加属性，不会渲染页面
+                    // 使用vm.$set(对象,属性名,属性值)
+                fruit:['苹果','香蕉','梨'],
+            },
+            methods:{
+                handelClick(){
+                    this.fruit.reverse();
+                }
+            }
+        });
+        setTimeout(function(){
+            vm.fruit.reverse();
+        },5000)
+    </script>
+</body>
+</html>

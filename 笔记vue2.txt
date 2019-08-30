@@ -1,0 +1,28 @@
+安装脚手架：
+自动化构建工具webpeak
+vue官方的脚手架，自带webpeak
+卸载旧版本的脚手架 npm uninstall vue-cli -g
+安装脚手架，用于生成项目 npm install -g @vue/cli
+快速原型开发 编译.vue文件 npm install -g @vue/cli-service-global
+查看vue版本 vue --version
+如果仍然需要使用旧版本的vue init功能，可以全局安装一个桥接工具 npm install -g @vue/cli=init 拉取旧版本
+插件：Vetur,能够使vue语法高亮
+
+使用脚手架创建项目：（vue-app是项目名称）
+vue create vue-app
+
+Vue CLI v3.10.0
+? Please pick a preset: Manually select features
+? Check the features needed for your project:
+>(*) Babel -帮助转化es6为es5
+ ( ) TypeScript
+ ( ) Progressive Web App (PWA) Support
+ ( ) Router -路由
+ ( ) Vuex   -管理大量数据和状态时
+ ( ) CSS Pre-processors -css预处理语言
+ (*) Linter / Formatter  -帮助检查代码的风格
+ ( ) Unit Testing   -单元测试
+ ( ) E2E Testing
+
+ cd vue-app 进入创建的项目文件夹中
+ npm run serve 启动服务

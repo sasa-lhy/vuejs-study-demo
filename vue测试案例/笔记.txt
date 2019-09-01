@@ -1,0 +1,25 @@
+<noscript>这里面的文字在不支持js的情况下显示</noscript>
+生成的项目文件中，public文件夹中的东西是可以通过路径来访问的。
+服务启动时默认打开的是index.html,想要访问mock.json可以使用http://localhost:8080/mock.json
+
+.gitignore:哪些文件在上传到git上的时候被忽略，也就是不上传
+babel.config.js:配置babel
+package-lock.json:依赖的包的一些信息
+package.json：这个项目的配置，scripts里面的东西可以直接加npm run 键名 使用
+
+public文件夹：相当于根目录，绝对路径，这里面的资源会直接拷贝，不会经过webpack处理，需要引用很多张图片以及需要动态地去改变时使用
+
+src文件夹：主要工作区
+assets资源文件夹：放置图片，css文件，相对路径，会经过webpack处理
+components：组件放置的地方
+App.vue:主入口的组件，最终渲染的组件。
+main.js：在index.html文件中自动注入。主要的需要引入的js文件。
+
+利用脚手架创建一个项目
+vue create 项目名称
+选择项目预设
+babel:转化es6为es5
+
+删除预设：在用户文件夹下找到.vuerc删除相应的预设
+
+vue ui:打开图形化界面
